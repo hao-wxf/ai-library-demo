@@ -1,0 +1,38 @@
+{
+  "name": "ai-library-demo",
+  "private": true,
+  "type": "module",
+  "description": "AI-native library management demo: five-layer enterprise framework with Pi SDK",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hao-wxf/ai-library-demo.git"
+  },
+  "homepage": "https://github.com/hao-wxf/ai-library-demo#readme",
+  "bugs": {
+    "url": "https://github.com/hao-wxf/ai-library-demo/issues"
+  },
+  "packageManager": "pnpm@10.30.3",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env apps/server/src/main.ts",
+    "dev": "node --env-file-if-exists=.env apps/server/src/main.ts",
+    "test": "node --test test/*.test.ts",
+    "check": "tsc --noEmit",
+    "seed": "node scripts/seed.ts",
+    "reset": "node scripts/reset.ts",
+    "smoke": "node --env-file-if-exists=.env scripts/smoke.ts"
+  },
+  "dependencies": {
+    "@earendil-works/chord": "1.5.2",
+    "@earendil-works/pi-ai": "1.5.2",
+    "@earendil-works/pi-durable": "1.5.2",
+    "@earendil-works/pi-schema": "1.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "26.0.0",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=26"
+  }
+}
