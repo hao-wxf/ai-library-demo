@@ -1,5 +1,8 @@
 # 契约说明
 
+> 仓库：<https://github.com/hao-wxf/ai-library-demo>（MIT）  
+> 完整技术文档：[five-layers-pi-sdk.md](five-layers-pi-sdk.md)
+
 框架的可复用性来自契约，而不是某个实现。本演示包含以下契约。
 
 ## ToolContract

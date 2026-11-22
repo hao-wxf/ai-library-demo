@@ -1,5 +1,8 @@
 # 架构说明
 
+> 仓库：<https://github.com/hao-wxf/ai-library-demo>（MIT）  
+> 完整技术文档：[five-layers-pi-sdk.md](five-layers-pi-sdk.md)
+
 ## 1. 目标
 
 用图书管理系统作为第一个业务载体，验证 AI 原生企业框架的最小闭环：

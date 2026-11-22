@@ -1,6 +1,7 @@
 # 五层架构 × Pi SDK × DeepSeek 技术文档
 
 > 项目：`ai-library-demo`  
+> 仓库：<https://github.com/hao-wxf/ai-library-demo>（MIT）  
 > 业务载体：图书馆管理（馆藏、读者、借阅、预约、审批、审计）  
 > 运行时：Node.js 26 + `@earendil-works/pi-durable` / `pi-ai` / `pi-schema` / `chord`  
 > 模型：DeepSeek（默认 `deepseek-flash`，通过 `DEEPSEEK_API_KEY` 认证）  
@@ -722,9 +723,11 @@ Pi SDK 不是五层架构的前提。它主要占据**编排层**，并提供一
 ## 11. 启动与验证
 
 ```bash
+git clone https://github.com/hao-wxf/ai-library-demo.git
 cd ai-library-demo
-copy .env.example .env
-# 填 DEEPSEEK_API_KEY
+pnpm install
+cp .env.example .env      # Windows: copy .env.example .env
+# 编辑 .env，填入自己的 DEEPSEEK_API_KEY
 pnpm start
 ```
 
@@ -754,7 +757,57 @@ pnpm smoke       # 真实 DeepSeek + RBAC 端到端回归
 
 ---
 
-## 12. 生产化清单
+## 12. 仓库与协作（GitHub）
+
+**公共仓库**：<https://github.com/hao-wxf/ai-library-demo>（公开，默认分支 `main`，[MIT License](../LICENSE)）。任何人都可以克隆和 Fork；直接向仓库推送分支需要协作者权限。
+
+### 12.1 获取代码
+
+```bash
+git clone https://github.com/hao-wxf/ai-library-demo.git
+cd ai-library-demo
+pnpm install
+```
+
+Node.js 26+、pnpm 10+、`DEEPSEEK_API_KEY` 配置与启动步骤见本文第 11 节；演示账号和完整说明见 [README](../README.md)。
+
+### 12.2 分支与 PR
+
+不要直接修改 `main`。外部贡献者先 Fork，再在自己的副本上开发；有写权限的协作者可直接从 `main` 拉分支。
+
+```bash
+git switch main
+git pull
+git switch -c feat/xxx
+# 修改代码或文档
+pnpm check && pnpm test
+git add -A
+git commit -m "feat: 描述改动"
+git push -u origin feat/xxx
+```
+
+然后在 GitHub 上向 `main` 提交 Pull Request。分支命名（`feat/`、`fix/`、`docs/`）、提交前检查和 PR 描述要求见 [CONTRIBUTING](../CONTRIBUTING.md)。
+
+### 12.3 同步与 CI
+
+```bash
+git pull    # 开始工作前同步远端
+git push    # 提交后推送
+```
+
+CI 配置在 `.github/workflows/ci.yml`：`push` 到 `main` 和所有 Pull Request 会依次执行 `pnpm install --frozen-lockfile`、`pnpm check`、`pnpm test`；合并前应保证 CI 通过。
+
+### 12.4 提交边界与许可
+
+- 不提交 `.env`、任何 API Key / Token；新环境从 `.env.example` 复制并填写自己的 `DEEPSEEK_API_KEY`；
+- 不提交 `data/*.sqlite*`（业务库与 Pi Agent 状态）、`temp/`、`node_modules/`、日志；
+- 不提交真实读者个人信息。
+
+以上边界已由 `.gitignore` 覆盖，详细约定见 [CONTRIBUTING](../CONTRIBUTING.md)。代码以 MIT License 发布。
+
+---
+
+## 13. 生产化清单
 
 - 统一身份：OIDC / SSO / 政务身份，移除演示账号；
 - 多因素认证、强密码策略、会话吊销；
@@ -772,7 +825,7 @@ pnpm smoke       # 真实 DeepSeek + RBAC 端到端回归
 
 ---
 
-## 13. 一句话总结
+## 14. 一句话总结
 
 > 五层是责任边界，Pi 是持久化编排与执行引擎，DeepSeek 是理解与规划能力，业务代码负责能力、策略和治理；模型可以提议，代码负责裁决，人保留最终确认权。  
 > 工具是不是 MCP 不影响五层架构；当前是 Native Tool，外部系统才更适合 MCP/OpenAPI。  

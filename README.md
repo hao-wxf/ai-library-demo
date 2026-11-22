@@ -162,6 +162,17 @@ pnpm reset        # 清空业务库和 Pi Agent 状态（先停服务）
 
 ---
 
+## GitHub 仓库
+
+- 公开仓库：<https://github.com/hao-wxf/ai-library-demo>
+- 默认分支：`main`
+- 许可证：MIT
+- CI：`.github/workflows/ci.yml`，push / PR 时运行 `pnpm check` 和 `pnpm test`
+
+任何人都可以克隆和 Fork；直接向仓库推送分支需要协作者权限（Settings → Collaborators 邀请）。协作分支、PR、同步和提交边界见 [CONTRIBUTING.md](CONTRIBUTING.md)，技术细节见 [docs/five-layers-pi-sdk.md](docs/five-layers-pi-sdk.md) 第 12 节。
+
+**不要提交** `.env`、API Key、`data/*.sqlite*`、`temp/`、`node_modules/`。每个协作者使用自己的 `DEEPSEEK_API_KEY`。
+
 ## 参与贡献
 
 见 [CONTRIBUTING.md](CONTRIBUTING.md)。欢迎 fork、提 issue、提 PR；新增能力层工具时请同步更新契约、策略、Trace/Audit 和技术文档。
